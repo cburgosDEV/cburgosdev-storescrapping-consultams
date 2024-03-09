@@ -7,7 +7,7 @@ import cburgosdev.java.Models.ProductRecord;
 import java.util.List;
 
 public class ProductDTO {
-    private int id;
+    private Long id;
     private String name;
     private Double lastPrice;
     private Double historicalMinPrice;
@@ -21,11 +21,11 @@ public class ProductDTO {
     private List<ProductDetail> productDetailList;
     private List<ProductRecord> productRecordList;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

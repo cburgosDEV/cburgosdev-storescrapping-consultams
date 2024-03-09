@@ -14,7 +14,7 @@ public class BrandService implements IBrandService {
     @Autowired
     private IBrandRepository brandRepository;
     @Override
-    public List<Brand> findAll() {
-        return brandRepository.findAll(Sort.by("name"));
+    public List<Brand> findAll(Long category) {
+        return brandRepository.getBrandsByCategoryId(Sort.by("name"), category);
     }
 }

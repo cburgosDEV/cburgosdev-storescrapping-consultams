@@ -10,7 +10,7 @@ import java.util.Date;
 public class ProductDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private Double price;
     private Double priceWithCard;
     private Double minPrice;
@@ -19,11 +19,11 @@ public class ProductDetail {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

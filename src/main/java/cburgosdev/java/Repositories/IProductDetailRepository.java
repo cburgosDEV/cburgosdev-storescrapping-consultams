@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface IProductDetailRepository extends JpaRepository<ProductDetail, Long> {
-    List<ProductDetail> getProductDetailListByProductId(Sort sort, int productId);
+    List<ProductDetail> getProductDetailListByProductId(Sort sort, Long productId);
 }

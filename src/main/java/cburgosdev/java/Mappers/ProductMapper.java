@@ -6,17 +6,30 @@ import cburgosdev.java.Models.ProductDetail;
 import cburgosdev.java.Models.ProductRecord;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class ProductMapper {
     public static ProductDTO modelToDTO(Product product) {
-        SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy");
+        // Obtén la fecha y hora actual
+        Date today = new Date();
+
+        // Crea un objeto Calendar y establece la fecha y hora actual
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+
+        // Resta 24 horas
+        calendar.add(Calendar.HOUR_OF_DAY, -24);
+
+        // Obtiene la nueva fecha y hora
+        Date yesterday = calendar.getTime();
 
         List<ProductDetail> productDetailStream = product.getProductDetailList()
                 .stream()
-                .filter(productDetail -> newFormat.format(productDetail.getDate()).equals(newFormat.format(new Date())))
+                .filter(productDetail -> productDetail.getDate().after(yesterday))
                 .toList();
 
         if(!productDetailStream.isEmpty()) {
@@ -39,9 +52,25 @@ public class ProductMapper {
         productDTO.setDetailHref(product.getDetailHref());
         productDTO.setImgSrc(product.getImgSrc());
         productDTO.setStore(product.getStore().getName());
-        productDTO.setBrand(product.getBrand().getName());
+        productDTO.setBrand(product.getBrand() == null ? "" : product.getBrand().getName());
         productDTO.setProductDetailList(productDetailStream);
         productDTO.setProductRecordList(product.getProductRecordList());
+
+        return productDTO;
+    }
+
+    public static ProductDTO modelToDTOBestDiscounts(Product product) {
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(product.getId());
+        productDTO.setName(product.getName());
+        productDTO.setLastPrice(product.getLastPrice());
+        productDTO.setHistoricalMinPrice(product.getHistoricalMinPrice());
+        productDTO.setDiscountRate(product.getDiscountRate());
+        productDTO.setIsHistoricalPrice(product.getIsHistoricalPrice());
+        productDTO.setDetailHref(product.getDetailHref());
+        productDTO.setImgSrc(product.getImgSrc());
+        productDTO.setStore(product.getStore().getName());
+        productDTO.setBrand(product.getBrand() == null ? "" : product.getBrand().getName());
 
         return productDTO;
     }

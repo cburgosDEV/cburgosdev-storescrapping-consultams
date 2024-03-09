@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,7 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private Double lastPrice;
     private Double historicalMinPrice;
@@ -20,6 +21,8 @@ public class Product {
     private Boolean isHistoricalPrice;
     private String detailHref;
     private String imgSrc;
+    private Date createdDate;
+    private Date modifiedDate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer"})
@@ -38,11 +41,11 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<ProductRecord> productRecordList = new ArrayList<>();
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -142,6 +145,22 @@ public class Product {
         this.productRecordList = productRecordList;
     }
 
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -149,10 +168,15 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", lastPrice=" + lastPrice +
                 ", historicalMinPrice=" + historicalMinPrice +
+                ", discountRate=" + discountRate +
+                ", isHistoricalPrice=" + isHistoricalPrice +
                 ", detailHref='" + detailHref + '\'' +
                 ", imgSrc='" + imgSrc + '\'' +
+                ", createdDate=" + createdDate +
+                ", modifiedDate=" + modifiedDate +
                 ", store=" + store +
                 ", brand=" + brand +
+                ", category=" + category +
                 ", productDetailList=" + productDetailList +
                 ", productRecordList=" + productRecordList +
                 '}';

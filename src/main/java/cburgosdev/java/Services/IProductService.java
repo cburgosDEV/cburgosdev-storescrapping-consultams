@@ -5,9 +5,11 @@ import cburgosdev.java.Models.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface IProductService {
-    Page<ProductDTO> findAllWithDetail(int pageNumber, int pageSize, String brand, int category, String product);
-    ProductDTO findByIdWithDetail(int productId);
+    Page<ProductDTO> findAllWithDetail(int pageNumber, int pageSize, String brand, Long category, String product);
+    ProductDTO findByIdWithDetail(Long productId);
+    HashMap<Long, List<ProductDTO>> findBestDiscounts();
 }
