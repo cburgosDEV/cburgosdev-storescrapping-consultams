@@ -18,6 +18,8 @@ public class ProductDTO {
     private String imgSrc;
     private String store;
     private String brand;
+    private Long categoryId;
+    private Long brandId;
     private List<ProductDetail> productDetailList;
     private List<ProductRecord> productRecordList;
 
@@ -121,6 +123,22 @@ public class ProductDTO {
         this.productRecordList = productRecordList;
     }
 
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Long getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
+
     @Override
     public String toString() {
         return "ProductDTO{" +
@@ -128,11 +146,15 @@ public class ProductDTO {
                 ", name='" + name + '\'' +
                 ", lastPrice=" + lastPrice +
                 ", historicalMinPrice=" + historicalMinPrice +
+                ", discountRate=" + discountRate +
+                ", isHistoricalPrice=" + isHistoricalPrice +
                 ", detailHref='" + detailHref + '\'' +
                 ", fullDetailHref='" + fullDetailHref + '\'' +
                 ", imgSrc='" + imgSrc + '\'' +
                 ", store='" + store + '\'' +
                 ", brand='" + brand + '\'' +
+                ", categoryId=" + categoryId +
+                ", brandId=" + brandId +
                 ", productDetailList=" + productDetailList +
                 ", productRecordList=" + productRecordList +
                 '}';

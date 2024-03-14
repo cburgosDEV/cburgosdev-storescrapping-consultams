@@ -24,13 +24,18 @@ public class ProductService implements IProductService {
     private IProductRepository productRepository;
 
     @Override
-    public Page<ProductDTO> findAllWithDetail(int pageNumber, int pageSize, String brand, Long category, String product) {
+    public Page<ProductDTO> findAllWithDetail(int pageNumber, int pageSize, String brand, Long category, String product, String store) {
         List<Long> brandList = null;
         if(!brand.isEmpty()) brandList = Arrays.stream(brand.split(",")).map(Long::parseLong).toList();
+
+        List<Long> storeList = null;
+        if(!store.isEmpty()) storeList = Arrays.stream(store.split(",")).map(Long::parseLong).toList();
+
         if(!product.isEmpty()) product = "%" + product.toUpperCase() + "%";
         else product = null;
+
         Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "discountRate"));
-        Page<Product> productsPage = productRepository.getProductByFilters(pageable, brandList, category, product);
+        Page<Product> productsPage = productRepository.getProductByFilters(pageable, brandList, category, product, storeList);
 
         return productsPage.map(ProductMapper::modelToDTO);
     }

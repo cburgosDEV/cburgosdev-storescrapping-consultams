@@ -5,12 +5,9 @@ import cburgosdev.java.Models.Product;
 import cburgosdev.java.Models.ProductDetail;
 import cburgosdev.java.Models.ProductRecord;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class ProductMapper {
     public static ProductDTO modelToDTO(Product product) {
@@ -53,6 +50,8 @@ public class ProductMapper {
         productDTO.setImgSrc(product.getImgSrc());
         productDTO.setStore(product.getStore().getName());
         productDTO.setBrand(product.getBrand() == null ? "" : product.getBrand().getName());
+        productDTO.setCategoryId(product.getCategory().getId());
+        productDTO.setBrandId(product.getBrand() == null ? 0 : product.getBrand().getId());
         productDTO.setProductDetailList(productDetailStream);
         productDTO.setProductRecordList(product.getProductRecordList());
 

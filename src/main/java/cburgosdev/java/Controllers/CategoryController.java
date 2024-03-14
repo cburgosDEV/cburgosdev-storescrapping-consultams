@@ -16,7 +16,7 @@ public class CategoryController {
     private ICategoryService categoryService;
 
     @GetMapping("/api/categories")
-    public List<Category> getProductByIdWithDetail() {
+    public List<Category> getCategories() {
         return categoryService.findAll();
     }
 }
