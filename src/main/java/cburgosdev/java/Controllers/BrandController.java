@@ -17,7 +17,7 @@ public class BrandController {
     private IBrandService brandService;
 
     @GetMapping("/api/brands")
-    public List<Brand> getBrands(@RequestParam(defaultValue = "0") Long category) {
+    public List<Brand> getBrands(@RequestParam(defaultValue = "") String category) {
         return brandService.findAll(category);
     }
 }

@@ -52,6 +52,7 @@ public class ProductMapper {
         productDTO.setBrand(product.getBrand() == null ? "" : product.getBrand().getName());
         productDTO.setCategoryId(product.getCategory().getId());
         productDTO.setBrandId(product.getBrand() == null ? 0 : product.getBrand().getId());
+        productDTO.setStoreId(product.getStore() == null ? 0 : product.getStore().getId());
         productDTO.setProductDetailList(productDetailStream);
         productDTO.setProductRecordList(product.getProductRecordList());
 
@@ -70,6 +71,7 @@ public class ProductMapper {
         productDTO.setImgSrc(product.getImgSrc());
         productDTO.setStore(product.getStore().getName());
         productDTO.setBrand(product.getBrand() == null ? "" : product.getBrand().getName());
+        productDTO.setStoreId(product.getStore() == null ? 0 : product.getStore().getId());
 
         return productDTO;
     }

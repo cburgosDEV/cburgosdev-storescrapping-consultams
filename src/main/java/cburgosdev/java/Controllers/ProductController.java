@@ -19,7 +19,7 @@ public class ProductController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "") String brand,
-            @RequestParam(defaultValue = "0") Long category,
+            @RequestParam(defaultValue = "") String category,
             @RequestParam(defaultValue = "") String product,
             @RequestParam(defaultValue = "") String store
     ) {

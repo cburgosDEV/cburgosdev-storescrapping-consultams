@@ -1,10 +1,12 @@
 package cburgosdev.java.DTOs;
 
 import cburgosdev.java.Constants.RipleyConstants;
+import cburgosdev.java.Constants.StoreConstants;
 import cburgosdev.java.Models.ProductDetail;
 import cburgosdev.java.Models.ProductRecord;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProductDTO {
     private Long id;
@@ -20,6 +22,7 @@ public class ProductDTO {
     private String brand;
     private Long categoryId;
     private Long brandId;
+    private Long storeId;
     private List<ProductDetail> productDetailList;
     private List<ProductRecord> productRecordList;
 
@@ -80,7 +83,7 @@ public class ProductDTO {
     }
 
     public String getFullDetailHref() {
-        return RipleyConstants.baseUrl + getDetailHref();
+        return Objects.equals(this.getStoreId(), StoreConstants.RIPLEY) ? RipleyConstants.RIPLEY_BASE_URL + getDetailHref() : getDetailHref();
     }
 
     public String getImgSrc() {
@@ -139,6 +142,14 @@ public class ProductDTO {
         this.brandId = brandId;
     }
 
+    public Long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
+    }
+
     @Override
     public String toString() {
         return "ProductDTO{" +
@@ -155,6 +166,7 @@ public class ProductDTO {
                 ", brand='" + brand + '\'' +
                 ", categoryId=" + categoryId +
                 ", brandId=" + brandId +
+                ", storeId=" + storeId +
                 ", productDetailList=" + productDetailList +
                 ", productRecordList=" + productRecordList +
                 '}';

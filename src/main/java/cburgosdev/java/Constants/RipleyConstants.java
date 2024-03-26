@@ -1,5 +1,5 @@
 package cburgosdev.java.Constants;
 
 public class RipleyConstants {
-    public static String baseUrl = "https://simple.ripley.com.pe";
+    public static String RIPLEY_BASE_URL = "https://simple.ripley.com.pe";
 }

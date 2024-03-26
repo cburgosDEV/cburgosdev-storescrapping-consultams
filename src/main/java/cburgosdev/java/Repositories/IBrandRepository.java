@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface IBrandRepository extends JpaRepository<Brand, Long> {
-    @Query("SELECT b FROM Brand b WHERE (:categoryId = 0 OR b.categoryId = :categoryId)")
-    List<Brand> getBrandsByCategoryId(Sort sort, Long categoryId);
+    @Query("SELECT b FROM Brand b WHERE (:categoryId IS NULL OR b.categoryId IN (:categoryId))")
+    List<Brand> getBrandsByCategoryId(Sort sort, List<Long> categoryId);
 }
